@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אודות מטבח לולו - הסיפור שלנו</title>
+    <meta name="description" content="הכירו את הסיפור של לולו ומטבח הסיני המקורי שלה בירושלים">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="menu.html">התפריט</a></li>
+                    <li><a href="about.html" class="active">אודות</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                    <li class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>הסיפור של לולו</h1>
+                <p>מסע קולינרי מסין לירושלים</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lulu's Story -->
+    <section class="lulu-story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-image">
+                    <img src="/images/lulu-portrait.jpg" alt="לולו - הבעלים והשפית הראשית" 
+                         onerror="this.src='/images/placeholder.jpg'">
+                </div>
+                <div class="story-text">
+                    <h2>👋 שלום, אני לולו!</h2>
+                    <p>
+                        לפני 15 שנה הגעתי לירושלים מסין עם חלום פשוט - להביא את הטעמים האותנטיים 
+                        של המטבח הסיני המקורי לתושבי העיר הקדושה. 
+                    </p>
+                    <p>
+                        גדלתי בסצ'ואן, פרובינציה הידועה בטעמיה הנועזים והמגוונים. מגיל צעיר 
+                        עמדתי לצד סבתא שלי במטבח, לומדת את סודות ההכנה המסורתיים שעברו מדור לדור.
+                    </p>
+                    <p>
+                        כיום, מטבח לולו הוא בית שני עבורי ועבור כל הלקוחות הנפלאים שלנו. 
+                        כל מנה מוכנת עם אהבה, תשומת לב לפרטים, ומרכיבים טריים ואיכותיים.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="our-values">
+        <div class="container">
+            <h2>הערכים שלנו</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🌱</div>
+                    <h3>טריות ואיכות</h3>
+                    <p>משתמשים אך ורק במרכיבים טריים ואיכותיים, ללא חומרים משמרים או תוספים מזיקים</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">👨‍🍳</div>
+                    <h3>מסורת אותנטית</h3>
+                    <p>כל המתכונים שלנו מבוססים על מסורת קולינרית סינית עתיקת יומין</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">❤️</div>
+                    <h3>שירות מהלב</h3>
+                    <p>אנחנו מתייחסים לכל לקוח כמו לבן משפחה - עם חום, מסירות ותשומת לב</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🏠</div>
+                    <h3>אווירה ביתית</h3>
+                    <p>המטבח שלנו הוא בית שני עבור הלקוחות - מקום נעים ומזמין לכל המשפחה</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Kitchen -->
+    <section class="our-kitchen">
+        <div class="container">
+            <div class="kitchen-content">
+                <div class="kitchen-text">
+                    <h2>המטבח שלנו</h2>
+                    <p>
+                        המטבח של לולו עוצב בהשראת המטבחים המסורתיים בסין, עם ציוד מקצועי 
+                        ותנורי wok מיוחדים המאפשרים לנו להשיג את הטעם והמרקם המושלמים.
+                    </p>
+                    <ul class="kitchen-features">
+                        <li>🔥 תנורי wok מקצועיים בטמפרטורה גבוהה</li>
+                        <li>🧄 תבלינים מקוריים המובאים ישירות מסין</li>
+                        <li>🥢 כלי בישול מסורתיים לטעם אותנטי</li>
+                        <li>✨ מטבח נקי ומסודר לפי הסטנדרטים הגבוהים</li>
+                    </ul>
+                    <p>
+                        כל בוקר אנו מכינים את המרכיבים הטריים, חותכים את הירקות ומכינים 
+                        את הרטבים המיוחדים שלנו כדי להבטיח שכל מנה תהיה מושלמת.
+                    </p>
+                </div>
+                <div class="kitchen-image">
+                    <img src="/images/kitchen-interior.jpg" alt="המטבח של לולו" 
+                         onerror="this.src='/images/placeholder.jpg'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Dishes -->
+    <section class="special-dishes">
+        <div class="container">
+            <h2>המנות המיוחדות שלנו</h2>
+            <div class="dishes-showcase">
+                <div class="dish-story">
+                    <div class="dish-image">
+                        <img src="/images/mapo-tofu.jpg" alt="מאפו טופו של לולו" 
+                             onerror="this.src='/images/placeholder.jpg'">
+                    </div>
+                    <div class="dish-content">
+                        <h3>מאפו טופו של סבתא</h3>
+                        <p>
+                            המנה החתמית של המטבח שלנו - מתכון משפחתי שעבר מסבתא לנכדה. 
+                            טופו רך ברוטב סצ'ואן חריף ועשיר, עם בשר חזיר טחון ובצל ירוק טרי.
+                        </p>
+                    </div>
+                </div>
+                <div class="dish-story">
+                    <div class="dish-image">
+                        <img src="/images/kung-pao-chicken.jpg" alt="עוף קונג פאו" 
+                             onerror="this.src='/images/placeholder.jpg'">
+                    </div>
+                    <div class="dish-content">
+                        <h3>עוף קונג פאו מקורי</h3>
+                        <p>
+                            לא כמו הגרסאות המוכרות במערב - זו הגרסה המקורית עם עוף רך, 
+                            בוטנים קלויים, פלפל סצ'ואן ורוטב מתוק-חריף מושלם.
+                        </p>
+                    </div>
+                </div>
+                <div class="dish-story">
+                    <div class="dish-image">
+                        <img src="/images/dan-dan-noodles.jpg" alt="אטריות דן דן" 
+                             onerror="this.src='/images/placeholder.jpg'">
+                    </div>
+                    <div class="dish-content">
+                        <h3>אטריות דן דן ביתיות</h3>
+                        <p>
+                            אטריות עבודת יד ברוטב שומשום עשיר, בשר טחון מתובל ועשבי תיבול טריים. 
+                            מנת הנוחות הסינית הגדולה ביותר!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Recognition -->
+    <section class="awards">
+        <div class="container">
+            <h2>הכרה והוקרה</h2>
+            <div class="awards-grid">
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <h3>"המטבח הסיני הטוב בירושלים"</h3>
+                    <p>זוכת פרס "טעם העיר" 2023</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">⭐</div>
+                    <h3>דירוג 4.9/5</h3>
+                    <p>בממוצע מעל 500 ביקורות לקוחות</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">📺</div>
+                    <h3>הופענו בתקשורת</h3>
+                    <p>ערוץ 2, גלי צה"ל ו"הארץ"</p>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">👥</div>
+                    <h3>קהילה נאמנה</h3>
+                    <p>מעל 2,000 לקוחות קבועים</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team">
+        <div class="container">
+            <h2>הצוות שלנו</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/images/lulu-chef.jpg" alt="לולו - השפית הראשית" 
+                             onerror="this.src='/images/placeholder.jpg'">
+                    </div>
+                    <h3>לולו</h3>
+                    <p class="member-role">בעלים ושפית ראשית</p>
+                    <p class="member-desc">15 שנות ניסיון, מומחית למטבח סצ'ואן מקורי</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/images/david-manager.jpg" alt="דוד - מנהל המסעדה" 
+                             onerror="this.src='/images/placeholder.jpg'">
+                    </div>
+                    <h3>דוד</h3>
+                    <p class="member-role">מנהל המסעדה</p>
+                    <p class="member-desc">דואג לשירות מעולה ולחוויה בלתי נשכחת</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/images/chen-sous-chef.jpg" alt="חן - סו-שף" 
+                             onerror="this.src='/images/placeholder.jpg'">
+                    </div>
+                    <h3>חן</h3>
+                    <p class="member-role">סו-שף</p>
+                    <p class="member-desc">בוגר בית ספר לקולינריה, מתמחה באטריות בעבודת יד</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="vision">
+        <div class="container">
+            <div class="vision-content">
+                <h2>החזון שלנו</h2>
+                <p class="vision-text">
+                    אנו חולמים להיות המקום הראשון שעולה במחשבה כשמדברים על מטבח סיני אותנטי בירושלים. 
+                    החזון שלנו הוא להמשיך לחדש, לשמר את המסורת, ולהביא חוויות קולינריות בלתי נשכחות 
+                    לכל אחד ואחת מהלקוחות שלנו.
+                </p>
+                <div class="vision-points">
+                    <div class="vision-point">
+                        <div class="point-icon">🌟</div>
+                        <p>להרחיב את התפריט עם מנות חדשות ומיוחדות</p>
+                    </div>
+                    <div class="vision-point">
+                        <div class="point-icon">🚀</div>
+                        <p>לשפר את חוויית המשלוח והשירות</p>
+                    </div>
+                    <div class="vision-point">
+                        <div class="point-icon">❤️</div>
+                        <p>להמשיך להיות הבית השני של הלקוחות שלנו</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Us -->
+    <section class="visit-us" id="contact">
+        <div class="container">
+            <div class="visit-content">
+                <div class="visit-info">
+                    <h2>בואו לבקר אותנו</h2>
+                    <p>נשמח לראות אתכם במטבח שלנו ולהכיר אתכם אישית!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <h4>כתובת</h4>
+                                <p>רחוב הרצל 15, ירושלים<br>(ליד שוק מחנה יהודה)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div class="contact-text">
+                                <h4>שעות פתיחה</h4>
+                                <p>ראשון-חמישי: 13:00-21:00<br>שישי: 13:00-15:00<br>שבת: סגור</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <h4>טלפון</h4>
+                                <p>
+                                    <a href="tel:052-520-1978">052-520-1978</a><br>
+                                    <a href="https://wa.me/972525201978">WhatsApp</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">
+                                <h4>אימייל</h4>
+                                <p>
+                                    <a href="mailto:lulu@lulu-k.com">lulu@lulu-k.com</a><br>
+                                    <a href="mailto:lulu.kitchen.il@gmail.com">lulu.kitchen.il@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visit-image">
+                    <img src="/images/restaurant-exterior.jpg" alt="חזית מטבח לולו" 
+                         onerror="this.src='/images/placeholder.jpg'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>מוכנים לטעום?</h2>
+                <p>הזמינו עכשיו וגלו מדוע לקוחות חוזרים אלינו שוב ושוב</p>
+                <div class="cta-buttons">
+                    <a href="menu.html" class="btn-primary">צפו בתפריט</a>
+                    <a href="index.html#daily-special" class="btn-secondary">מנת היום</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>העגלה שלך</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <p>סה"כ: ₪<span id="cart-total">0</span></p>
+            </div>
+            <div class="delivery-options">
+                <h3>אפשרויות משלוח:</h3>
+                <label><input type="radio" name="delivery" value="pickup"> איסוף עצמי (חינם)</label>
+                <label><input type="radio" name="delivery" value="delivery" checked> משלוח (₪40)</label>
+            </div>
+            <button class="btn-primary full-width" onclick="proceedToCheckout()">המשך לתשלום</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+            <p>נבנה עם ❤️ בירושלים</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update cart display
+            if (window.cartManager) {
+                cartManager.updateCartDisplay();
+            }
+            
+            // Track page view
+            Utils.trackEvent('about_page_view', {
+                page_title: 'About Lulu Kitchen'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הזמנה חדשה - מטבח לולו</title>
+    <meta name="description" content="השלימו את ההזמנה שלכם - מטבח לולו">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="menu.html">התפריט</a></li>
+                    <li><a href="cart.html">עגלה</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="order-progress">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <span>עגלה</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>פרטים</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>תשלום</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span>אישור</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Form -->
+    <section class="order-section">
+        <div class="container">
+            <div class="order-content">
+                <!-- Customer Information -->
+                <div class="order-form">
+                    <h2>📝 פרטי לקוח</h2>
+                    
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="customer-name">שם מלא *</label>
+                            <input type="text" id="customer-name" name="customerName" required>
+                            <div class="field-error" id="name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customer-phone">טלפון *</label>
+                            <input type="tel" id="customer-phone" name="customerPhone" required 
+                                   placeholder="05X-XXX-XXXX">
+                            <div class="field-error" id="phone-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customer-email">אימייל (אופציונלי)</label>
+                            <input type="email" id="customer-email" name="customerEmail" 
+                                   placeholder="your@email.com">
+                            <div class="field-error" id="email-error"></div>
+                        </div>
+                        
+                        <!-- Delivery Information -->
+                        <h3>🚚 פרטי משלוח</h3>
+                        
+                        <div class="form-group">
+                            <label for="delivery-zone">אזור משלוח *</label>
+                            <select id="delivery-zone" name="deliveryZone" required onchange="updateDeliveryFee()">
+                                <option value="">בחר אזור</option>
+                                <option value="jerusalem">ירושלים</option>
+                                <option value="mevasseret">מבשרת ציון</option>
+                                <option value="surroundings">סביבות ירושלים</option>
+                            </select>
+                            <div class="zone-info" id="zone-info"></div>
+                        </div>
+                        
+                        <div class="delivery-method-group">
+                            <h4>סוג האיסוף</h4>
+                            <label class="radio-option">
+                                <input type="radio" name="deliveryMethod" value="delivery" checked onchange="toggleAddressField()">
+                                <span>משלוח לבית</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="deliveryMethod" value="pickup" onchange="toggleAddressField()">
+                                <span>איסוף עצמי</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group" id="address-group">
+                            <label for="customer-address">כתובת מלאה *</label>
+                            <textarea id="customer-address" name="customerAddress" required 
+                                    placeholder="רחוב, מספר בית, קומה, דירה, הוראות נוספות..."></textarea>
+                            <div class="field-error" id="address-error"></div>
+                        </div>
+                        
+                        <!-- Delivery Time -->
+                        <div class="form-group">
+                            <label for="delivery-time">זמן רצוי לאיסוף/משלוח</label>
+                            <select id="delivery-time" name="deliveryTime">
+                                <option value="">בהקדם האפשרי</option>
+                                <!-- Time options will be populated by JavaScript -->
+                            </select>
+                            <div class="time-info">
+                                <small>⏰ זמני פעילות: ראשון-חמישי 13:00-21:00, שישי 13:00-15:00</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Special Instructions -->
+                        <div class="form-group">
+                            <label for="order-notes">הערות מיוחדות (אופציונלי)</label>
+                            <textarea id="order-notes" name="orderNotes" 
+                                    placeholder="הוראות מיוחדות, אלרגיות, בקשות נוספות..."></textarea>
+                        </div>
+                        
+                        <!-- Repeat Customer -->
+                        <div class="repeat-customer" id="repeat-customer-section" style="display:none;">
+                            <h4>🔍 לקוח קיים?</h4>
+                            <p>הכנס טלפון או אימייל לאיתור הזמנות קודמות</p>
+                            <div class="search-customer">
+                                <input type="text" id="customer-search" placeholder="טלפון או אימייל">
+                                <button type="button" onclick="searchCustomer()" class="btn-secondary">חפש</button>
+                            </div>
+                            <div id="found-customer" style="display:none;">
+                                <p>✅ נמצא לקוח קיים - הפרטים הושלמו אוטומטית</p>
+                            </div>
+                        </div>
+                        
+                        <!-- VIP Membership Offer -->
+                        <div class="vip-offer" id="vip-offer" style="display:none;">
+                            <div class="vip-card">
+                                <h4>👑 הצטרף למועדון VIP!</h4>
+                                <p>קבל 15% הנחה על הזמנה זו ועל כל ההזמנות הבאות</p>
+                                <ul>
+                                    <li>✅ 15% הנחה על כל הזמנה</li>
+                                    <li>✅ משלוח חינם תמיד</li>
+                                    <li>✅ גישה למנות בלעדיות</li>
+                                    <li>✅ נקודות לויאליטי כפולות</li>
+                                </ul>
+                                <div class="vip-pricing">
+                                    <span class="vip-price">רק ₪299 לחודש</span>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" id="join-vip" name="joinVIP">
+                                        <span>כן, אני רוצה להצטרף ל-VIP!</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" onclick="goBackToCart()" class="btn-secondary">חזור לעגלה</button>
+                            <button type="submit" class="btn-primary">המשך לתשלום</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Order Summary Sidebar -->
+                <div class="order-summary-sidebar">
+                    <div class="summary-card">
+                        <h3>📋 סיכום הזמנה</h3>
+                        
+                        <div class="order-items" id="order-items">
+                            <!-- Order items will be populated here -->
+                        </div>
+                        
+                        <div class="order-totals">
+                            <div class="total-line">
+                                <span>סכום פריטים:</span>
+                                <span id="items-total">₪0.00</span>
+                            </div>
+                            <div class="total-line vip-discount" style="display:none;">
+                                <span>הנחת VIP (15%):</span>
+                                <span id="vip-discount">-₪0.00</span>
+                            </div>
+                            <div class="total-line">
+                                <span id="delivery-fee-label">דמי משלוח:</span>
+                                <span id="delivery-fee">₪40.00</span>
+                            </div>
+                            <div class="total-line final">
+                                <span><strong>סה"כ לתשלום:</strong></span>
+                                <span id="final-total"><strong>₪0.00</strong></span>
+                            </div>
+                        </div>
+                        
+                        <div class="delivery-estimate" id="delivery-estimate">
+                            <h4>⏱️ זמן משלוח משוער</h4>
+                            <p id="estimated-time">45-60 דקות</p>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <h4>📞 צריכים עזרה?</h4>
+                            <p>
+                                <a href="tel:052-520-1978">052-520-1978</a><br>
+                                <a href="https://wa.me/972525201978">WhatsApp</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        let orderData = {};
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeOrderPage();
+        });
+
+        function initializeOrderPage() {
+            loadOrderData();
+            populateOrderSummary();
+            populateDeliveryTimes();
+            setupFormValidation();
+            checkVIPEligibility();
+        }
+
+        function loadOrderData() {
+            const checkoutCart = Utils.loadFromStorage('checkoutCart', null);
+            if (!checkoutCart || !checkoutCart.items || checkoutCart.items.length === 0) {
+                // Redirect back to cart if no items
+                window.location.href = 'cart.html';
+                return;
+            }
+            orderData = checkoutCart;
+        }
+
+        function populateOrderSummary() {
+            const itemsContainer = document.getElementById('order-items');
+            const itemsTotal = document.getElementById('items-total');
+            const finalTotal = document.getElementById('final-total');
+            
+            if (!orderData.items) return;
+
+            itemsContainer.innerHTML = orderData.items.map(item => `
+                <div class="order-item">
+                    <img src="${item.imageUrl || '/images/placeholder.jpg'}" 
+                         alt="${item.name_he}">
+                    <div class="item-info">
+                        <div class="item-name">${item.name_he}</div>
+                        <div class="item-quantity">כמות: ${item.quantity}</div>
+                        ${item.extras && item.extras.length > 0 ? 
+                            `<div class="item-extras">תוספות: ${item.extras.map(e => e.name_he).join(', ')}</div>` : ''}
+                    </div>
+                    <div class="item-price">₪${item.totalPrice.toFixed(2)}</div>
+                </div>
+            `).join('');
+
+            itemsTotal.textContent = `₪${orderData.totals.subtotal.toFixed(2)}`;
+            updateOrderTotals();
+        }
+
+        function updateOrderTotals() {
+            const vipDiscount = document.getElementById('join-vip')?.checked ? 
+                orderData.totals.subtotal * 0.15 : 0;
+            
+            const deliveryFee = calculateDeliveryFee();
+            const total = orderData.totals.subtotal - vipDiscount + deliveryFee;
+
+            document.getElementById('vip-discount').textContent = `-₪${vipDiscount.toFixed(2)}`;
+            document.getElementById('delivery-fee').textContent = deliveryFee === 0 ? 'חינם!' : `₪${deliveryFee.toFixed(2)}`;
+            document.getElementById('final-total').textContent = `₪${total.toFixed(2)}`;
+
+            // Show/hide VIP discount line
+            const vipLine = document.querySelector('.vip-discount');
+            vipLine.style.display = vipDiscount > 0 ? 'flex' : 'none';
+        }
+
+        function calculateDeliveryFee() {
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value;
+            const isVIP = document.getElementById('join-vip')?.checked;
+            
+            if (deliveryMethod === 'pickup' || isVIP || orderData.totals.subtotal >= 800) {
+                return 0;
+            }
+            
+            return 40;
+        }
+
+        function updateDeliveryFee() {
+            const zone = document.getElementById('delivery-zone').value;
+            const zoneInfo = document.getElementById('zone-info');
+            
+            const zoneData = {
+                'jerusalem': { name: 'ירושלים', time: '45-60 דקות', fee: 40, minFree: 800 },
+                'mevasseret': { name: 'מבשרת ציון', time: '50-65 דקות', fee: 40, minFree: 800 },
+                'surroundings': { name: 'סביבות ירושלים', time: '60-75 דקות', fee: 40, minFree: 800 }
+            };
+            
+            if (zone && zoneData[zone]) {
+                const info = zoneData[zone];
+                zoneInfo.innerHTML = `
+                    <small>⏱️ זמן משלוח משוער: ${info.time}<br>
+                    🚚 דמי משלוח: ₪${info.fee} (חינם מעל ₪${info.minFree})</small>
+                `;
+                document.getElementById('estimated-time').textContent = info.time;
+            }
+            
+            updateOrderTotals();
+        }
+
+        function toggleAddressField() {
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value;
+            const addressGroup = document.getElementById('address-group');
+            const deliveryFeeLabel = document.getElementById('delivery-fee-label');
+            
+            if (deliveryMethod === 'pickup') {
+                addressGroup.style.display = 'none';
+                document.getElementById('customer-address').required = false;
+                deliveryFeeLabel.textContent = 'דמי משלוח:';
+            } else {
+                addressGroup.style.display = 'block';
+                document.getElementById('customer-address').required = true;
+                deliveryFeeLabel.textContent = 'דמי משלוח:';
+            }
+            
+            updateOrderTotals();
+        }
+
+        function populateDeliveryTimes() {
+            const timeSelect = document.getElementById('delivery-time');
+            const now = new Date();
+            const times = [];
+            
+            // Generate time slots from current time + 45 minutes to 21:00
+            let startTime = new Date(now.getTime() + 45 * 60000);
+            startTime.setMinutes(Math.ceil(startTime.getMinutes() / 15) * 15); // Round to nearest 15 min
+            
+            const endTime = new Date();
+            endTime.setHours(21, 0, 0, 0);
+            
+            while (startTime <= endTime) {
+                const timeString = startTime.toLocaleTimeString('he-IL', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                times.push(`<option value="${timeString}">${timeString}</option>`);
+                startTime.setMinutes(startTime.getMinutes() + 15);
+            }
+            
+            timeSelect.innerHTML = timeSelect.innerHTML + times.join('');
+        }
+
+        function setupFormValidation() {
+            const form = document.getElementById('order-form');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (await validateForm()) {
+                    processOrder();
+                }
+            });
+            
+            // Real-time validation
+            document.getElementById('customer-phone').addEventListener('blur', validatePhone);
+            document.getElementById('customer-email').addEventListener('blur', validateEmail);
+            document.getElementById('join-vip').addEventListener('change', updateOrderTotals);
+        }
+
+        async function validateForm() {
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const email = document.getElementById('customer-email').value.trim();
+            const zone = document.getElementById('delivery-zone').value;
+            const address = document.getElementById('customer-address').value.trim();
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked')?.value;
+            
+            let isValid = true;
+            
+            // Validate name
+            if (!name) {
+                showFieldError('name-error', 'שם מלא חובה');
+                isValid = false;
+            } else {
+                clearFieldError('name-error');
+            }
+            
+            // Validate phone
+            if (!Utils.validatePhone(phone)) {
+                showFieldError('phone-error', 'מספר טלפון לא תקין');
+                isValid = false;
+            } else {
+                clearFieldError('phone-error');
+            }
+            
+            // Validate email if provided
+            if (email && !Utils.validateEmail(email)) {
+                showFieldError('email-error', 'כתובת אימייל לא תקינה');
+                isValid = false;
+            } else {
+                clearFieldError('email-error');
+            }
+            
+            // Validate delivery zone
+            if (!zone) {
+                alert('יש לבחור אזור משלוח');
+                isValid = false;
+            }
+            
+            // Validate address for delivery
+            if (deliveryMethod === 'delivery' && !Utils.validateAddress(address)) {
+                showFieldError('address-error', 'כתובת מלאה חובה עבור משלוח');
+                isValid = false;
+            } else {
+                clearFieldError('address-error');
+            }
+            
+            return isValid;
+        }
+
+        function validatePhone() {
+            const phone = document.getElementById('customer-phone').value.trim();
+            if (phone && !Utils.validatePhone(phone)) {
+                showFieldError('phone-error', 'מספר טלפון לא תקין (05X-XXX-XXXX)');
+            } else {
+                clearFieldError('phone-error');
+            }
+        }
+
+        function validateEmail() {
+            const email = document.getElementById('customer-email').value.trim();
+            if (email && !Utils.validateEmail(email)) {
+                showFieldError('email-error', 'כתובת אימייל לא תקינה');
+            } else {
+                clearFieldError('email-error');
+            }
+        }
+
+        function showFieldError(errorId, message) {
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.style.display = 'block';
+            }
+        }
+
+        function clearFieldError(errorId) {
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                errorEl.style.display = 'none';
+            }
+        }
+
+        function checkVIPEligibility() {
+            // Show VIP offer for orders over ₪100
+            if (orderData.totals.subtotal >= 100) {
+                document.getElementById('vip-offer').style.display = 'block';
+            }
+        }
+
+        function searchCustomer() {
+            const searchTerm = document.getElementById('customer-search').value.trim();
+            // This would integrate with a customer database
+            // For now, we'll simulate with localStorage
+            Utils.showNotification('תכונה זו תהיה זמינה בקרוב', 'info');
+        }
+
+        async function processOrder() {
+            const formData = new FormData(document.getElementById('order-form'));
+            const orderDetails = {
+                customer: {
+                    name: formData.get('customerName'),
+                    phone: formData.get('customerPhone'),
+                    email: formData.get('customerEmail'),
+                    address: formData.get('customerAddress')
+                },
+                delivery: {
+                    zone: formData.get('deliveryZone'),
+                    method: formData.get('deliveryMethod'),
+                    time: formData.get('deliveryTime'),
+                    notes: formData.get('orderNotes')
+                },
+                items: orderData.items,
+                totals: calculateFinalTotals(),
+                isVIP: formData.get('joinVIP') === 'on',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save order data for payment page
+            Utils.saveToStorage('orderDetails', orderDetails);
+            
+            // Track order start
+            Utils.trackEvent('begin_checkout_step2', {
+                order_value: orderDetails.totals.final,
+                delivery_method: orderDetails.delivery.method
+            });
+            
+            // Navigate to payment
+            window.location.href = 'payment.html';
+        }
+
+        function calculateFinalTotals() {
+            const vipDiscount = document.getElementById('join-vip')?.checked ? 
+                orderData.totals.subtotal * 0.15 : 0;
+            const deliveryFee = calculateDeliveryFee();
+            const final = orderData.totals.subtotal - vipDiscount + deliveryFee;
+            
+            return {
+                subtotal: orderData.totals.subtotal,
+                vipDiscount,
+                deliveryFee,
+                final
+            };
+        }
+
+        function goBackToCart() {
+            window.location.href = 'cart.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תשלום - מטבח לולו</title>
+    <meta name="description" content="השלימו את התשלום - מטבח לולו">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="menu.html">התפריט</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="order-progress">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <span>עגלה</span>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">2</div>
+                    <span>פרטים</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">3</div>
+                    <span>תשלום</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span>אישור</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-content">
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <h2>💳 אפשרויות תשלום</h2>
+                    
+                    <div class="payment-options">
+                        <!-- Cash Payment -->
+                        <div class="payment-method" data-method="cash">
+                            <div class="payment-header">
+                                <input type="radio" name="payment-method" value="cash" id="payment-cash">
+                                <label for="payment-cash">
+                                    <div class="payment-icon">💰</div>
+                                    <div class="payment-info">
+                                        <h3>מזומן</h3>
+                                        <p>תשלום במזומן בעת המשלוח/איסוף</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-details" style="display:none;">
+                                <div class="cash-info">
+                                    <p>✅ אין עמלות נוספות</p>
+                                    <p>✅ תשלום נוח ומאובטח</p>
+                                    <p>⚠️ אנא הכינו סכום מדויק או קרוב לסכום הסופי</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bit Payment -->
+                        <div class="payment-method" data-method="bit">
+                            <div class="payment-header">
+                                <input type="radio" name="payment-method" value="bit" id="payment-bit">
+                                <label for="payment-bit">
+                                    <div class="payment-icon">📱</div>
+                                    <div class="payment-info">
+                                        <h3>Bit</h3>
+                                        <p>תשלום מהיר ובטוח דרך אפליקציית Bit</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-details" style="display:none;">
+                                <div class="bit-info">
+                                    <p>✅ תשלום מיידי ומאובטח</p>
+                                    <p>✅ אישור הזמנה מיידי</p>
+                                    <p>💡 תועברו לאפליקציית Bit להשלמת התשלום</p>
+                                    <div class="bit-qr" id="bit-qr" style="display:none;">
+                                        <p>📱 סרקו את הקוד או לחצו על הקישור:</p>
+                                        <div class="qr-placeholder">QR Code</div>
+                                        <a href="https://www.bitpay.co.il/app/me/C822FDFE-1C69-4F92-B57B-09635D465B9D" 
+                                           target="_blank" class="btn-primary">פתח באפליקציית Bit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PayBox Payment -->
+                        <div class="payment-method" data-method="paybox">
+                            <div class="payment-header">
+                                <input type="radio" name="payment-method" value="paybox" id="payment-paybox">
+                                <label for="payment-paybox">
+                                    <div class="payment-icon">💳</div>
+                                    <div class="payment-info">
+                                        <h3>PayBox</h3>
+                                        <p>תשלום בכרטיס אשראי דרך PayBox</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-details" style="display:none;">
+                                <div class="paybox-info">
+                                    <p>✅ תמיכה בכל כרטיסי האשראי</p>
+                                    <p>✅ הגנה מלאה על פרטי התשלום</p>
+                                    <p>✅ אפשרות לתשלום בתשלומים</p>
+                                    <div class="paybox-link" id="paybox-link" style="display:none;">
+                                        <a href="https://link.payboxapp.com/Hh5KZaqQc1Jz93Zv7" 
+                                           target="_blank" class="btn-primary">המשך לתשלום PayBox</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Confirmation -->
+                    <div class="payment-confirmation" id="payment-confirmation" style="display:none;">
+                        <h3>✅ אישור הזמנה</h3>
+                        <div class="confirmation-content">
+                            <p>לאחר השלמת התשלום, ההזמנה תישלח אוטומטית:</p>
+                            <ul>
+                                <li>📱 WhatsApp למטבח</li>
+                                <li>📧 אישור בדוא"ל</li>
+                                <li>💌 SMS אישור</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="payment-actions">
+                        <button onclick="goBackToOrder()" class="btn-secondary">חזור לפרטים</button>
+                        <button onclick="processPayment()" class="btn-primary" id="complete-order-btn" disabled>
+                            השלם הזמנה
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="payment-summary">
+                    <div class="summary-card">
+                        <h3>📋 סיכום סופי</h3>
+                        
+                        <!-- Customer Info -->
+                        <div class="customer-summary" id="customer-summary">
+                            <!-- Customer details will be populated here -->
+                        </div>
+                        
+                        <!-- Order Items -->
+                        <div class="order-items-summary" id="order-items-summary">
+                            <!-- Order items will be populated here -->
+                        </div>
+                        
+                        <!-- Final Totals -->
+                        <div class="final-totals">
+                            <div class="total-line">
+                                <span>סכום פריטים:</span>
+                                <span id="final-subtotal">₪0.00</span>
+                            </div>
+                            <div class="total-line vip-discount" style="display:none;">
+                                <span>הנחת VIP (15%):</span>
+                                <span id="final-vip-discount">-₪0.00</span>
+                            </div>
+                            <div class="total-line">
+                                <span id="final-delivery-label">דמי משלוח:</span>
+                                <span id="final-delivery-fee">₪0.00</span>
+                            </div>
+                            <div class="total-line final">
+                                <span><strong>סה"כ לתשלום:</strong></span>
+                                <span id="final-total"><strong>₪0.00</strong></span>
+                            </div>
+                        </div>
+                        
+                        <!-- Estimated Delivery -->
+                        <div class="delivery-summary" id="delivery-summary">
+                            <!-- Delivery details will be populated here -->
+                        </div>
+                        
+                        <!-- VIP Benefits -->
+                        <div class="vip-summary" id="vip-summary" style="display:none;">
+                            <div class="vip-benefits">
+                                <h4>👑 הטבות VIP</h4>
+                                <p>✅ הנחת 15% הופעלה</p>
+                                <p>✅ משלוח חינם פעיל</p>
+                                <p>✅ נקודות לויאליטי כפולות</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Support -->
+                        <div class="payment-support">
+                            <h4>💡 צריכים עזרה?</h4>
+                            <div class="support-options">
+                                <a href="tel:052-520-1978" class="support-link">
+                                    📞 052-520-1978
+                                </a>
+                                <a href="https://wa.me/972525201978" class="support-link">
+                                    💬 WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Processing Modal -->
+    <div id="payment-processing-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="processing-content">
+                <div class="processing-icon">🔄</div>
+                <h3>מעבד הזמנה...</h3>
+                <p>אנא המתינו, אנו מעבדים את ההזמנה שלכם</p>
+                <div class="processing-steps">
+                    <div class="step-item" id="step-validate">✅ בדיקת פרטים</div>
+                    <div class="step-item" id="step-payment">⏳ עיבוד תשלום</div>
+                    <div class="step-item" id="step-confirm">⏳ שליחת אישור</div>
+                    <div class="step-item" id="step-complete">⏳ השלמת הזמנה</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+    <script>
+        let orderDetails = {};
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePaymentPage();
+        });
+
+        function initializePaymentPage() {
+            loadOrderDetails();
+            setupPaymentMethods();
+            populateOrderSummary();
+            validatePaymentAccess();
+        }
+
+        function loadOrderDetails() {
+            orderDetails = Utils.loadFromStorage('orderDetails', null);
+            if (!orderDetails) {
+                // Redirect back if no order details
+                Utils.showNotification('לא נמצאו פרטי הזמנה', 'error');
+                setTimeout(() => window.location.href = 'order.html', 2000);
+                return;
+            }
+        }
+
+        function setupPaymentMethods() {
+            const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+            const completeBtn = document.getElementById('complete-order-btn');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', () => {
+                    // Hide all payment details
+                    document.querySelectorAll('.payment-details').forEach(detail => {
+                        detail.style.display = 'none';
+                    });
+                    
+                    // Show selected payment details
+                    const selectedMethod = method.closest('.payment-method');
+                    const details = selectedMethod.querySelector('.payment-details');
+                    if (details) {
+                        details.style.display = 'block';
+                        
+                        // Show specific payment elements
+                        if (method.value === 'bit') {
+                            document.getElementById('bit-qr').style.display = 'block';
+                        } else if (method.value === 'paybox') {
+                            document.getElementById('paybox-link').style.display = 'block';
+                        }
+                    }
+                    
+                    // Enable complete button
+                    completeBtn.disabled = false;
+                    
+                    // Show confirmation section
+                    document.getElementById('payment-confirmation').style.display = 'block';
+                    
+                    // Update button text based on payment method
+                    updateCompleteButtonText(method.value);
+                });
+            });
+        }
+
+        function updateCompleteButtonText(paymentMethod) {
+            const btn = document.getElementById('complete-order-btn');
+            const total = orderDetails.totals.final.toFixed(2);
+            
+            switch (paymentMethod) {
+                case 'cash':
+                    btn.textContent = `השלם הזמנה - תשלום במזומן (₪${total})`;
+                    break;
+                case 'bit':
+                    btn.textContent = `המשך לתשלום Bit (₪${total})`;
+                    break;
+                case 'paybox':
+                    btn.textContent = `המשך לתשלום PayBox (₪${total})`;
+                    break;
+                default:
+                    btn.textContent = 'השלם הזמנה';
+            }
+        }
+
+        function populateOrderSummary() {
+            populateCustomerSummary();
+            populateOrderItems();
+            populateTotals();
+            populateDeliveryDetails();
+            
+            if (orderDetails.isVIP) {
+                document.getElementById('vip-summary').style.display = 'block';
+            }
+        }
+
+        function populateCustomerSummary() {
+            const container = document.getElementById('customer-summary');
+            const customer = orderDetails.customer;
+            const delivery = orderDetails.delivery;
+            
+            container.innerHTML = `
+                <div class="summary-section">
+                    <h4>👤 פרטי לקוח</h4>
+                    <p><strong>${customer.name}</strong></p>
+                    <p>📞 ${customer.phone}</p>
+                    ${customer.email ? `<p>📧 ${customer.email}</p>` : ''}
+                    ${delivery.method === 'delivery' ? `
+                        <p>🏠 ${customer.address}</p>
+                        <p>🚚 משלוח ל${getZoneName(delivery.zone)}</p>
+                    ` : `
+                        <p>🏪 איסוף עצמי מהמטבח</p>
+                    `}
+                    ${delivery.time ? `<p>⏰ זמן מועדף: ${delivery.time}</p>` : ''}
+                    ${delivery.notes ? `<p>📝 הערות: ${delivery.notes}</p>` : ''}
+                </div>
+            `;
+        }
+
+        function populateOrderItems() {
+            const container = document.getElementById('order-items-summary');
+            
+            container.innerHTML = `
+                <div class="summary-section">
+                    <h4>🛒 פריטים בהזמנה (${orderDetails.items.length})</h4>
+                    <div class="items-list">
+                        ${orderDetails.items.map(item => `
+                            <div class="summary-item">
+                                <div class="item-name">${item.quantity}x ${item.name_he}</div>
+                                <div class="item-price">₪${item.totalPrice.toFixed(2)}</div>
+                                ${item.extras && item.extras.length > 0 ? `
+                                    <div class="item-extras">+ ${item.extras.map(e => e.name_he).join(', ')}</div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function populateTotals() {
+            const totals = orderDetails.totals;
+            
+            document.getElementById('final-subtotal').textContent = `₪${totals.subtotal.toFixed(2)}`;
+            document.getElementById('final-total').textContent = `₪${totals.final.toFixed(2)}`;
+            
+            if (totals.vipDiscount > 0) {
+                document.querySelector('.vip-discount').style.display = 'flex';
+                document.getElementById('final-vip-discount').textContent = `-₪${totals.vipDiscount.toFixed(2)}`;
+            }
+            
+            const deliveryLabel = document.getElementById('final-delivery-label');
+            const deliveryFee = document.getElementById('final-delivery-fee');
+            
+            if (orderDetails.delivery.method === 'pickup') {
+                deliveryLabel.textContent = 'דמי משלוח:';
+                deliveryFee.textContent = 'איסוף עצמי';
+            } else if (totals.deliveryFee === 0) {
+                deliveryLabel.textContent = 'דמי משלוח:';
+                deliveryFee.textContent = 'חינם!';
+            } else {
+                deliveryLabel.textContent = 'דמי משלוח:';
+                deliveryFee.textContent = `₪${totals.deliveryFee.toFixed(2)}`;
+            }
+        }
+
+        function populateDeliveryDetails() {
+            const container = document.getElementById('delivery-summary');
+            const delivery = orderDetails.delivery;
+            const estimatedTime = getEstimatedDeliveryTime(delivery);
+            
+            container.innerHTML = `
+                <div class="summary-section">
+                    <h4>⏰ זמן אספקה משוער</h4>
+                    <p class="delivery-time">${estimatedTime}</p>
+                    <p class="delivery-note">
+                        ${delivery.method === 'delivery' ? 
+                            '🚚 נצור איתכם קשר לפני המשלוח' : 
+                            '🏪 נודיע לכם כשההזמנה מוכנה לאיסוף'}
+                    </p>
+                </div>
+            `;
+        }
+
+        function getZoneName(zone) {
+            const zones = {
+                'jerusalem': 'ירושלים',
+                'mevasseret': 'מבשרת ציון',
+                'surroundings': 'סביבות ירושלים'
+            };
+            return zones[zone] || zone;
+        }
+
+        function getEstimatedDeliveryTime(delivery) {
+            const times = {
+                'jerusalem': '45-60 דקות',
+                'mevasseret': '50-65 דקות',
+                'surroundings': '60-75 דקות'
+            };
+            
+            if (delivery.method === 'pickup') {
+                return '15-20 דקות';
+            }
+            
+            return times[delivery.zone] || '45-60 דקות';
+        }
+
+        function validatePaymentAccess() {
+            // Check if restaurant is open
+            if (!Utils.isRestaurantOpen()) {
+                Utils.showNotification('המטבח סגור כעת. ההזמנה תטופל בפתיחה הבאה.', 'info');
+            }
+            
+            // Check minimum order (if applicable)
+            const minOrder = 30;
+            if (orderDetails.totals.subtotal < minOrder) {
+                Utils.showNotification(`הזמנה מינימלית: ₪${minOrder}`, 'error');
+                setTimeout(() => window.location.href = 'cart.html', 3000);
+            }
+        }
+
+        async function processPayment() {
+            const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+            if (!selectedMethod) {
+                Utils.showNotification('אנא בחרו אמצעי תשלום', 'error');
+                return;
+            }
+
+            // Show processing modal
+            showProcessingModal();
+            
+            try {
+                const paymentData = {
+                    ...orderDetails,
+                    paymentMethod: selectedMethod.value,
+                    orderNumber: generateOrderNumber(),
+                    timestamp: new Date().toISOString()
+                };
+
+                // Process payment based on method
+                await processPaymentMethod(selectedMethod.value, paymentData);
+                
+                // Send order via WhatsApp and Email
+                await sendOrderNotifications(paymentData);
+                
+                // Save order and clear cart
+                await completeOrder(paymentData);
+                
+                // Redirect to thank you page
+                Utils.saveToStorage('completedOrder', paymentData);
+                window.location.href = 'thankyou.html';
+                
+            } catch (error) {
+                console.error('Payment processing error:', error);
+                Utils.showNotification('שגיאה בעיבוד התשלום. אנא נסו שוב.', 'error');
+                hideProcessingModal();
+            }
+        }
+
+        async function processPaymentMethod(method, orderData) {
+            updateProcessingStep('step-payment', '⏳ מעבד תשלום...');
+            
+            switch (method) {
+                case 'cash':
+                    // Cash payment - no processing needed
+                    await delay(1000);
+                    updateProcessingStep('step-payment', '✅ תשלום במזומן נרשם');
+                    break;
+                    
+                case 'bit':
+                    // Open Bit payment
+                    const bitUrl = `https://www.bitpay.co.il/app/me/C822FDFE-1C69-4F92-B57B-09635D465B9D?amount=${orderData.totals.final}&description=מטבח לולו הזמנה ${orderData.orderNumber}`;
+                    window.open(bitUrl, '_blank');
+                    await delay(2000);
+                    updateProcessingStep('step-payment', '✅ הופנה לתשלום Bit');
+                    break;
+                    
+                case 'paybox':
+                    // Open PayBox payment
+                    const payboxUrl = `https://link.payboxapp.com/Hh5KZaqQc1Jz93Zv7`;
+                    window.open(payboxUrl, '_blank');
+                    await delay(2000);
+                    updateProcessingStep('step-payment', '✅ הופנה לתשלום PayBox');
+                    break;
+            }
+        }
+
+        async function sendOrderNotifications(orderData) {
+            updateProcessingStep('step-confirm', '⏳ שולח הזמנה...');
+            
+            try {
+                // Send WhatsApp message
+                Utils.sendWhatsAppOrder({
+                    ...orderData,
+                    customerName: orderData.customer.name,
+                    customerPhone: orderData.customer.phone,
+                    customerAddress: orderData.customer.address,
+                    deliveryTime: orderData.delivery.time,
+                    notes: orderData.delivery.notes,
+                    paymentMethod: getPaymentMethodName(orderData.paymentMethod),
+                    items: orderData.items,
+                    subtotal: orderData.totals.subtotal,
+                    total: orderData.totals.final,
+                    deliveryFee: orderData.totals.deliveryFee,
+                    isVIP: orderData.isVIP
+                });
+                
+                // Send email if provided
+                if (orderData.customer.email) {
+                    Utils.sendEmailOrder({
+                        ...orderData,
+                        customerName: orderData.customer.name,
+                        customerEmail: orderData.customer.email,
+                        items: orderData.items,
+                        total: orderData.totals.final
+                    });
+                }
+                
+                updateProcessingStep('step-confirm', '✅ הזמנה נשלחה');
+                
+            } catch (error) {
+                console.error('Error sending notifications:', error);
+                updateProcessingStep('step-confirm', '⚠️ שגיאה בשליחה - ההזמנה נשמרה');
+            }
+        }
+
+        async function completeOrder(orderData) {
+            updateProcessingStep('step-complete', '⏳ משלים הזמנה...');
+            
+            // Save order to customer history
+            if (window.cartManager) {
+                cartManager.saveOrder(orderData);
+            }
+            
+            // Clear cart
+            Utils.removeFromStorage('luluCart');
+            Utils.removeFromStorage('checkoutCart');
+            Utils.removeFromStorage('orderDetails');
+            
+            // Add loyalty points
+            const points = Math.floor(orderData.totals.final);
+            const currentPoints = Utils.loadFromStorage('luluPoints', 0);
+            Utils.saveToStorage('luluPoints', currentPoints + points);
+            
+            // Activate VIP if selected
+            if (orderData.isVIP) {
+                Utils.saveToStorage('luluVIP', true);
+            }
+            
+            // Track purchase
+            Utils.trackPurchase(orderData);
+            
+            updateProcessingStep('step-complete', '✅ הזמנה הושלמה!');
+            
+            await delay(1000);
+        }
+
+        function generateOrderNumber() {
+            const date = new Date();
+            const year = date.getFullYear().toString().slice(-2);
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `${year}${month}${day}${random}`;
+        }
+
+        function getPaymentMethodName(method) {
+            const names = {
+                'cash': 'מזומן',
+                'bit': 'Bit',
+                'paybox': 'PayBox'
+            };
+            return names[method] || method;
+        }
+
+        function showProcessingModal() {
+            document.getElementById('payment-processing-modal').style.display = 'block';
+        }
+
+        function hideProcessingModal() {
+            document.getElementById('payment-processing-modal').style.display = 'none';
+        }
+
+        function updateProcessingStep(stepId, text) {
+            const step = document.getElementById(stepId);
+            if (step) {
+                step.textContent = text;
+                if (text.startsWith('✅')) {
+                    step.style.color = 'var(--primary-gold)';
+                }
+            }
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function goBackToOrder() {
+            window.location.href = 'order.html';
+        }
+    </script>
+</body>
+</html>
