@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תודה על ההזמנה! - מטבח לולו</title>
+    <meta name="description" content="ההזמנה שלכם התקבלה בהצלחה - מטבח לולו">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="menu.html">התפריט</a></li>
+                    <li><a href="about.html">אודות</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Thank You Section -->
+    <section class="thankyou-section">
+        <div class="container">
+            <div class="thankyou-content">
+                <!-- Success Message -->
+                <div class="success-message">
+                    <div class="success-icon">🎉</div>
+                    <h1>תודה רבה על ההזמנה!</h1>
+                    <p class="success-subtitle">ההזמנה שלכם התקבלה בהצלחה ונמצאת בטיפול</p>
+                </div>
+
+                <!-- Order Details Card -->
+                <div class="order-confirmation-card">
+                    <div class="confirmation-header">
+                        <h2>📋 אישור הזמנה</h2>
+                        <div class="order-number" id="order-number">
+                            <span class="label">מספר הזמנה:</span>
+                            <span class="number">#000000</span>
+                        </div>
+                        <div class="order-date" id="order-date">
+                            <span class="label">תאריך:</span>
+                            <span class="date"></span>
+                        </div>
+                    </div>
+
+                    <div class="confirmation-content">
+                        <!-- Customer Info -->
+                        <div class="confirmation-section">
+                            <h3>👤 פרטי לקוח</h3>
+                            <div class="customer-info" id="customer-info">
+                                <!-- Customer details will be populated here -->
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="confirmation-section">
+                            <h3>🛒 פרטי ההזמנה</h3>
+                            <div class="order-items" id="order-items-confirmation">
+                                <!-- Order items will be populated here -->
+                            </div>
+                            
+                            <div class="order-totals-confirmation">
+                                <div class="total-line">
+                                    <span>סכום פריטים:</span>
+                                    <span id="confirm-subtotal">₪0.00</span>
+                                </div>
+                                <div class="total-line vip-discount" style="display:none;">
+                                    <span>הנחת VIP (15%):</span>
+                                    <span id="confirm-vip-discount">-₪0.00</span>
+                                </div>
+                                <div class="total-line">
+                                    <span>דמי משלוח:</span>
+                                    <span id="confirm-delivery-fee">₪0.00</span>
+                                </div>
+                                <div class="total-line final">
+                                    <span><strong>סה"כ שולם:</strong></span>
+                                    <span id="confirm-total"><strong>₪0.00</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Info -->
+                        <div class="confirmation-section">
+                            <h3 id="delivery-title">🚚 פרטי משלוח</h3>
+                            <div class="delivery-info" id="delivery-info">
+                                <!-- Delivery details will be populated here -->
+                            </div>
+                        </div>
+
+                        <!-- Payment Info -->
+                        <div class="confirmation-section">
+                            <h3>💳 פרטי תשלום</h3>
+                            <div class="payment-info" id="payment-info">
+                                <!-- Payment details will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="next-steps">
+                    <h2>📱 מה קורה עכשיו?</h2>
+                    <div class="steps-timeline">
+                        <div class="step completed">
+                            <div class="step-icon">✅</div>
+                            <div class="step-content">
+                                <h4>הזמנה התקבלה</h4>
+                                <p>ההזמנה שלכם נרשמה במערכת</p>
+                            </div>
+                        </div>
+                        <div class="step active">
+                            <div class="step-icon">👨‍🍳</div>
+                            <div class="step-content">
+                                <h4>הכנת המנות</h4>
+                                <p>הצוות שלנו מכין את המנות הטריות</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">🚚</div>
+                            <div class="step-content">
+                                <h4 id="final-step-title">משלוח</h4>
+                                <p id="final-step-desc">המנות יגיעו אליכם חמות וטעימות</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact and Tracking -->
+                <div class="order-tracking">
+                    <div class="tracking-section">
+                        <h3>📞 עקיבה וקשר</h3>
+                        <div class="tracking-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">📱</div>
+                                <div class="contact-details">
+                                    <h4>WhatsApp</h4>
+                                    <p>קיבלתם הודעה ב-WhatsApp עם פרטי ההזמנה</p>
+                                    <a href="https://wa.me/972525201978" class="btn-secondary">פתח WhatsApp</a>
+                                </div>
+                            </div>
+                            <div class="contact-item" id="email-confirmation" style="display:none;">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-details">
+                                    <h4>אישור בדוא"ל</h4>
+                                    <p>אישור ההזמנה נשלח לכתובת המייל שלכם</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">☎️</div>
+                                <div class="contact-details">
+                                    <h4>שירות לקוחות</h4>
+                                    <p>לכל שאלה או בעיה</p>
+                                    <a href="tel:052-520-1978" class="btn-secondary">052-520-1978</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIP Welcome -->
+                <div class="vip-welcome" id="vip-welcome" style="display:none;">
+                    <div class="vip-card">
+                        <h2>👑 ברוכים הבאים למועדון VIP!</h2>
+                        <p>הצטרפתם בהצלחה למועדון ה-VIP שלנו</p>
+                        <div class="vip-benefits">
+                            <div class="benefit-item">
+                                <span class="benefit-icon">💰</span>
+                                <span>15% הנחה על כל הזמנה</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🚚</span>
+                                <span>משלוח חינם תמיד</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">⭐</span>
+                                <span>נקודות לויאליטי כפולות</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🍽️</span>
+                                <span>גישה למנות בלעדיות</span>
+                            </div>
+                        </div>
+                        <p class="vip-note">ההטבות יופעלו מההזמנה הבאה</p>
+                    </div>
+                </div>
+
+                <!-- Loyalty Points -->
+                <div class="loyalty-earned" id="loyalty-earned">
+                    <div class="points-card">
+                        <h3>🌟 נקודות לויאליטי</h3>
+                        <div class="points-earned">
+                            <span class="points-number" id="points-earned-count">0</span>
+                            <span class="points-text">נקודות נצברו</span>
+                        </div>
+                        <p class="points-info">100 נקודות = ₪10 הנחה בהזמנה הבאה</p>
+                        <div class="total-points">
+                            <span>סה"כ נקודות שלכם: <strong id="total-points-count">0</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="menu.html" class="btn-primary">הזמינו שוב</a>
+                    <a href="index.html" class="btn-secondary">חזרה לבית</a>
+                    <button onclick="shareOrder()" class="btn-secondary">שתפו חברים</button>
+                </div>
+
+                <!-- Feedback Section -->
+                <div class="feedback-section">
+                    <h3>💭 איך היינו?</h3>
+                    <p>המשוב שלכם חשוב לנו!</p>
+                    <div class="feedback-buttons">
+                        <button onclick="leaveFeedback(5)" class="feedback-btn">🤩 מעולה</button>
+                        <button onclick="leaveFeedback(4)" class="feedback-btn">😊 טוב</button>
+                        <button onclick="leaveFeedback(3)" class="feedback-btn">😐 בסדר</button>
+                        <button onclick="leaveFeedback(2)" class="feedback-btn">😞 לא טוב</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+            <p>נבנה עם ❤️ בירושלים</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let completedOrder = {};
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeThankYouPage();
+        });
+
+        function initializeThankYouPage() {
+            loadCompletedOrder();
+            populateOrderDetails();
+            setupAutoRedirect();
+            trackPageView();
+        }
+
+        function loadCompletedOrder() {
+            completedOrder = Utils.loadFromStorage('completedOrder', null);
+            
+            if (!completedOrder) {
+                // No completed order found, redirect to home
+                Utils.showNotification('לא נמצאו פרטי הזמנה', 'error');
+                setTimeout(() => window.location.href = 'index.html', 2000);
+                return;
+            }
+        }
+
+        function populateOrderDetails() {
+            populateOrderHeader();
+            populateCustomerInfo();
+            populateOrderItems();
+            populateDeliveryInfo();
+            populatePaymentInfo();
+            populateLoyaltyPoints();
+            
+            if (completedOrder.isVIP) {
+                document.getElementById('vip-welcome').style.display = 'block';
+            }
+            
+            if (completedOrder.customer.email) {
+                document.getElementById('email-confirmation').style.display = 'block';
+            }
+        }
+
+        function populateOrderHeader() {
+            document.getElementById('order-number').querySelector('.number').textContent = `#${completedOrder.orderNumber}`;
+            document.getElementById('order-date').querySelector('.date').textContent = 
+                new Date(completedOrder.timestamp).toLocaleString('he-IL');
+        }
+
+        function populateCustomerInfo() {
+            const container = document.getElementById('customer-info');
+            const customer = completedOrder.customer;
+            
+            container.innerHTML = `
+                <div class="info-item">
+                    <span class="label">שם:</span>
+                    <span class="value">${customer.name}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">טלפון:</span>
+                    <span class="value">${customer.phone}</span>
+                </div>
+                ${customer.email ? `
+                    <div class="info-item">
+                        <span class="label">אימייל:</span>
+                        <span class="value">${customer.email}</span>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function populateOrderItems() {
+            const container = document.getElementById('order-items-confirmation');
+            
+            container.innerHTML = completedOrder.items.map(item => `
+                <div class="order-item-row">
+                    <div class="item-details">
+                        <span class="item-name">${item.quantity}x ${item.name_he}</span>
+                        ${item.extras && item.extras.length > 0 ? `
+                            <div class="item-extras">תוספות: ${item.extras.map(e => e.name_he).join(', ')}</div>
+                        ` : ''}
+                    </div>
+                    <div class="item-price">₪${item.totalPrice.toFixed(2)}</div>
+                </div>
+            `).join('');
+            
+            // Populate totals
+            const totals = completedOrder.totals;
+            document.getElementById('confirm-subtotal').textContent = `₪${totals.subtotal.toFixed(2)}`;
+            document.getElementById('confirm-total').textContent = `₪${totals.final.toFixed(2)}`;
+            
+            if (totals.vipDiscount > 0) {
+                document.querySelector('.vip-discount').style.display = 'flex';
+                document.getElementById('confirm-vip-discount').textContent = `-₪${totals.vipDiscount.toFixed(2)}`;
+            }
+            
+            const deliveryFeeEl = document.getElementById('confirm-delivery-fee');
+            if (totals.deliveryFee === 0) {
+                deliveryFeeEl.textContent = 'חינם!';
+            } else {
+                deliveryFeeEl.textContent = `₪${totals.deliveryFee.toFixed(2)}`;
+            }
+        }
+
+        function populateDeliveryInfo() {
+            const container = document.getElementById('delivery-info');
+            const delivery = completedOrder.delivery;
+            const customer = completedOrder.customer;
+            
+            if (delivery.method === 'pickup') {
+                document.getElementById('delivery-title').innerHTML = '🏪 פרטי איסוף';
+                document.getElementById('final-step-title').textContent = 'איסוף עצמי';
+                document.getElementById('final-step-desc').textContent = 'ההזמנה תהיה מוכנה לאיסוף';
+                
+                container.innerHTML = `
+                    <div class="info-item">
+                        <span class="label">סוג איסוף:</span>
+                        <span class="value">איסוף עצמי מהמטבח</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">כתובת:</span>
+                        <span class="value">מטבח לולו, ירושלים</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">זמן איסוף משוער:</span>
+                        <span class="value">15-20 דקות</span>
+                    </div>
+                    ${delivery.time ? `
+                        <div class="info-item">
+                            <span class="label">זמן מועדף:</span>
+                            <span class="value">${delivery.time}</span>
+                        </div>
+                    ` : ''}
+                    <div class="pickup-note">
+                        📞 נודיע לכם כשההזמנה מוכנה לאיסוף
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="info-item">
+                        <span class="label">כתובת משלוח:</span>
+                        <span class="value">${customer.address}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">אזור משלוח:</span>
+                        <span class="value">${getZoneName(delivery.zone)}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">זמן משלוח משוער:</span>
+                        <span class="value">${getDeliveryTime(delivery.zone)}</span>
+                    </div>
+                    ${delivery.time ? `
+                        <div class="info-item">
+                            <span class="label">זמן מועדף:</span>
+                            <span class="value">${delivery.time}</span>
+                        </div>
+                    ` : ''}
+                    ${delivery.notes ? `
+                        <div class="info-item">
+                            <span class="label">הערות:</span>
+                            <span class="value">${delivery.notes}</span>
+                        </div>
+                    ` : ''}
+                    <div class="delivery-note">
+                        📞 נצור איתכם קשר לפני המשלוח
+                    </div>
+                `;
+            }
+        }
+
+        function populatePaymentInfo() {
+            const container = document.getElementById('payment-info');
+            const paymentMethodName = getPaymentMethodName(completedOrder.paymentMethod);
+            
+            container.innerHTML = `
+                <div class="info-item">
+                    <span class="label">אמצעי תשלום:</span>
+                    <span class="value">${paymentMethodName}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">סכום שולם:</span>
+                    <span class="value strong">₪${completedOrder.totals.final.toFixed(2)}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">סטטוס תשלום:</span>
+                    <span class="value success">
+                        ${completedOrder.paymentMethod === 'cash' ? 'ממתין לתשלום' : 'שולם'}
+                    </span>
+                </div>
+            `;
+        }
+
+        function populateLoyaltyPoints() {
+            const pointsEarned = Math.floor(completedOrder.totals.final);
+            const currentPoints = Utils.loadFromStorage('luluPoints', 0);
+            
+            document.getElementById('points-earned-count').textContent = pointsEarned;
+            document.getElementById('total-points-count').textContent = currentPoints;
+            
+            if (completedOrder.isVIP) {
+                // VIP gets double points
+                document.getElementById('points-earned-count').textContent = pointsEarned * 2;
+                const vipNote = document.createElement('p');
+                vipNote.className = 'vip-points-note';
+                vipNote.textContent = '👑 נקודות כפולות בזכות מעמד VIP!';
+                document.querySelector('.points-card').appendChild(vipNote);
+            }
+        }
+
+        function getZoneName(zone) {
+            const zones = {
+                'jerusalem': 'ירושלים',
+                'mevasseret': 'מבשרת ציון',
+                'surroundings': 'סביבות ירושלים'
+            };
+            return zones[zone] || zone;
+        }
+
+        function getDeliveryTime(zone) {
+            const times = {
+                'jerusalem': '45-60 דקות',
+                'mevasseret': '50-65 דקות',
+                'surroundings': '60-75 דקות'
+            };
+            return times[zone] || '45-60 דקות';
+        }
+
+        function getPaymentMethodName(method) {
+            const names = {
+                'cash': 'מזומן',
+                'bit': 'Bit',
+                'paybox': 'PayBox'
+            };
+            return names[method] || method;
+        }
+
+        function setupAutoRedirect() {
+            // Optional: Auto-redirect to home after a long time
+            // setTimeout(() => {
+            //     window.location.href = 'index.html';
+            // }, 300000); // 5 minutes
+        }
+
+        function trackPageView() {
+            Utils.trackEvent('order_complete', {
+                order_id: completedOrder.orderNumber,
+                order_value: completedOrder.totals.final,
+                payment_method: completedOrder.paymentMethod,
+                delivery_method: completedOrder.delivery.method,
+                is_vip: completedOrder.isVIP
+            });
+        }
+
+        function shareOrder() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'הזמנתי ממטבח לולו!',
+                    text: 'הזמנתי מהמטבח הסיני הטוב בירושלים - מטבח לולו',
+                    url: window.location.origin
+                });
+            } else {
+                // Fallback for browsers without Web Share API
+                const shareText = `הזמנתי ממטבח לולו! המטבח הסיני הטוב בירושלים\n${window.location.origin}`;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(shareText);
+                    Utils.showNotification('הקישור הועתק ללוח', 'success');
+                }
+            }
+        }
+
+        function leaveFeedback(rating) {
+            const feedback = {
+                orderNumber: completedOrder.orderNumber,
+                rating: rating,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save feedback (would normally send to server)
+            const existingFeedback = Utils.loadFromStorage('luluFeedback', []);
+            existingFeedback.push(feedback);
+            Utils.saveToStorage('luluFeedback', existingFeedback);
+            
+            // Show thank you message
+            const ratingTexts = {
+                5: 'תודה רבה! 🤩',
+                4: 'תודה על המשוב! 😊',
+                3: 'נשמח לשפר! 😐',
+                2: 'נצור איתכם קשר לשיפור 😞'
+            };
+            
+            Utils.showNotification(ratingTexts[rating], 'success');
+            
+            // Hide feedback section after rating
+            document.querySelector('.feedback-section').style.display = 'none';
+            
+            // Track feedback
+            Utils.trackEvent('feedback_given', {
+                order_id: completedOrder.orderNumber,
+                rating: rating
+            });
+        }
+
+        // Clean up stored order data after page load
+        setTimeout(() => {
+            Utils.removeFromStorage('completedOrder');
+        }, 5000);
+    </script>
+</body>
+</html>

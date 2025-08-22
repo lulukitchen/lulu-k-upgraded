@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התפריט המלא - מטבח לולו</title>
+    <meta name="description" content="צפו בתפריט המלא של מטבח לולו - מנות סיניות טעימות ומגוונות">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="#daily-special">מנת היום</a></li>
+                    <li><a href="#menu">התפריט</a></li>
+                    <li><a href="about.html">אודות</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                    <li class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Daily Special -->
+    <section id="daily-special" class="daily-special">
+        <div class="container">
+            <h2>🔥 מנת היום המיוחדת</h2>
+            <div id="special-dish" class="special-card">
+                <div class="special-image">
+                    <img src="" alt="מנת היום" id="special-img">
+                </div>
+                <div class="special-info">
+                    <h3 id="special-name"></h3>
+                    <p id="special-description"></p>
+                    <div class="special-price">
+                        <span class="original-price" id="special-original"></span>
+                        <span class="special-price-final" id="special-final"></span>
+                    </div>
+                    <button class="btn-primary" onclick="addToCart('special')">הוסף לעגלה</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="container">
+            <h3>סנן לפי:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="starter">מנות פתיחה</button>
+                <button class="filter-btn" data-filter="main">מנות עיקריות</button>
+                <button class="filter-btn" data-filter="vegetarian">צמחוני</button>
+                <button class="filter-btn" data-filter="spicy">חריף</button>
+                <button class="filter-btn" data-filter="family">משפחתי XL</button>
+            </div>
+            <div class="allergen-filters">
+                <h4>🚫 הסתר אלרגנים:</h4>
+                <label><input type="checkbox" id="hide-gluten"> גלוטן</label>
+                <label><input type="checkbox" id="hide-nuts"> אגוזים</label>
+                <label><input type="checkbox" id="hide-dairy"> חלבי</label>
+                <label><input type="checkbox" id="hide-soy"> סויה</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2>התפריט המלא</h2>
+            <div class="menu-loading" id="menu-loading" style="display:none;">
+                <p>טוען תפריט...</p>
+            </div>
+            <div class="menu-grid" id="menu-grid">
+                <!-- Menu items will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison" id="comparison-section" style="display:none;">
+        <div class="container">
+            <h2>השוואת מנות (עד 3)</h2>
+            <div class="comparison-grid" id="comparison-grid">
+                <!-- Comparison items will be loaded here -->
+            </div>
+            <button class="btn-secondary" onclick="clearComparison()">נקה השוואה</button>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>העגלה שלך</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <p>סה"כ: ₪<span id="cart-total">0</span></p>
+            </div>
+            <div class="delivery-options">
+                <h3>אפשרויות משלוח:</h3>
+                <label><input type="radio" name="delivery" value="pickup"> איסוף עצמי (חינם)</label>
+                <label><input type="radio" name="delivery" value="delivery" checked> משלוח (₪40)</label>
+            </div>
+            <button class="btn-primary full-width" onclick="proceedToCheckout()">המשך לתשלום</button>
+        </div>
+    </div>
+
+    <!-- Quick Preview Modal -->
+    <div id="preview-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closePreview()">&times;</span>
+            <div id="preview-content"></div>
+        </div>
+    </div>
+
+    <!-- Extras Modal (will be created by extras.js) -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+            <p>נבנה עם ❤️ בירושלים</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/extras.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

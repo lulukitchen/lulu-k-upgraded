@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עגלת קנייה - מטבח לולו</title>
+    <meta name="description" content="סקירת העגלה שלכם - מטבח לולו">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="menu.html">התפריט</a></li>
+                    <li><a href="about.html">אודות</a></li>
+                    <li class="cart-icon active">🛒 <span id="cart-count">0</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Page Content -->
+    <section class="cart-page">
+        <div class="container">
+            <h2>🛒 עגלת הקנייה שלך</h2>
+            
+            <div class="cart-content">
+                <div class="cart-main">
+                    <div id="cart-items-page" class="cart-items-list">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    
+                    <!-- Recommended Items -->
+                    <div class="recommended-section" id="recommended-section" style="display:none;">
+                        <h3>🌟 מומלץ להוסיף</h3>
+                        <div class="recommended-grid" id="recommended-grid">
+                            <!-- Recommended items -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-sidebar">
+                    <div class="cart-summary-card">
+                        <h3>סיכום הזמנה</h3>
+                        
+                        <div class="delivery-zone-section">
+                            <h4>🚚 אזור משלוח</h4>
+                            <select id="delivery-zone" onchange="updateDeliveryZone()">
+                                <option value="jerusalem">ירושלים</option>
+                                <option value="mevasseret">מבשרת ציון</option>
+                                <option value="surroundings">סביבות ירושלים</option>
+                            </select>
+                        </div>
+                        
+                        <div class="delivery-method-section">
+                            <h4>📍 סוג האיסוף</h4>
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery-method" value="delivery" checked>
+                                <span>משלוח לבית</span>
+                                <span class="delivery-time">45-60 דקות</span>
+                            </label>
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery-method" value="pickup">
+                                <span>איסוף עצמי</span>
+                                <span class="delivery-time">15-20 דקות</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Coupon Section -->
+                        <div class="coupon-section">
+                            <h4>🎫 קופון הנחה</h4>
+                            <div class="coupon-input">
+                                <input type="text" id="coupon-code" placeholder="הכנס קוד קופון">
+                                <button onclick="applyCoupon()" class="btn-secondary">הפעל</button>
+                            </div>
+                            <div id="applied-coupons" class="applied-coupons">
+                                <!-- Applied coupons will appear here -->
+                            </div>
+                        </div>
+                        
+                        <!-- VIP Section -->
+                        <div class="vip-section" id="vip-section" style="display:none;">
+                            <div class="vip-benefits">
+                                <h4>👑 הטבות VIP פעילות</h4>
+                                <p>✅ הנחה 15% על ההזמנה</p>
+                                <p>✅ משלוח חינם</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Order Summary -->
+                        <div class="order-totals">
+                            <div class="total-line">
+                                <span>סכום ביניים:</span>
+                                <span id="subtotal">₪0.00</span>
+                            </div>
+                            <div class="total-line vip-discount" style="display:none;">
+                                <span>הנחת VIP (15%):</span>
+                                <span id="vip-discount">₪0.00</span>
+                            </div>
+                            <div class="total-line coupon-discount" style="display:none;">
+                                <span>הנחת קופון:</span>
+                                <span id="coupon-discount">₪0.00</span>
+                            </div>
+                            <div class="total-line">
+                                <span>דמי משלוח:</span>
+                                <span id="delivery-fee">₪40.00</span>
+                            </div>
+                            <div class="total-line final-total">
+                                <span><strong>סה"כ לתשלום:</strong></span>
+                                <span id="final-total"><strong>₪0.00</strong></span>
+                            </div>
+                            <div class="points-info">
+                                <span>🌟 תרוויח <span id="points-earned">0</span> נקודות לויאליטי</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="cart-actions">
+                            <button onclick="clearCart()" class="btn-secondary full-width">רוקן עגלה</button>
+                            <button onclick="continueToOrder()" class="btn-primary full-width">המשך להזמנה</button>
+                        </div>
+                        
+                        <!-- Quick Reorder -->
+                        <div class="quick-reorder" id="quick-reorder" style="display:none;">
+                            <h4>🔄 הזמנות קודמות</h4>
+                            <div id="saved-orders">
+                                <!-- Saved orders will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty Cart State -->
+    <section class="empty-cart-page" id="empty-cart-page" style="display:none;">
+        <div class="container">
+            <div class="empty-cart-content">
+                <div class="empty-cart-icon">🛒</div>
+                <h2>העגלה שלך ריקה</h2>
+                <p>הוסף מנות טעימות מהתפריט המגוון שלנו</p>
+                <div class="empty-cart-actions">
+                    <a href="menu.html" class="btn-primary">צפה בתפריט</a>
+                    <a href="index.html" class="btn-secondary">חזרה לבית</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+            <p>נבנה עם ❤️ בירושלים</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        // Cart page specific functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCartPage();
+        });
+
+        function initializeCartPage() {
+            loadCartPage();
+            loadSavedOrders();
+            updateCartDisplay();
+        }
+
+        function loadCartPage() {
+            const cart = Utils.loadFromStorage('luluCart', []);
+            const emptyCartPage = document.getElementById('empty-cart-page');
+            const cartSection = document.querySelector('.cart-page');
+            
+            if (cart.length === 0) {
+                emptyCartPage.style.display = 'block';
+                cartSection.style.display = 'none';
+            } else {
+                emptyCartPage.style.display = 'none';
+                cartSection.style.display = 'block';
+                renderCartItems(cart);
+                loadRecommendedItems();
+            }
+        }
+
+        function renderCartItems(cartItems) {
+            const container = document.getElementById('cart-items-page');
+            if (!container) return;
+
+            container.innerHTML = cartItems.map(item => `
+                <div class="cart-item-card" data-item-id="${item.id}">
+                    <div class="cart-item-image">
+                        <img src="${item.imageUrl || '/images/placeholder.jpg'}" 
+                             alt="${item.name_he}" loading="lazy"
+                             onerror="Utils.handleImageError(this)">
+                    </div>
+                    <div class="cart-item-details">
+                        <h3>${item.name_he}</h3>
+                        <p class="item-description">${item.description_he || ''}</p>
+                        ${item.extras && item.extras.length > 0 ? `
+                            <div class="item-extras">
+                                <strong>תוספות:</strong> ${item.extras.map(e => e.name_he).join(', ')}
+                            </div>
+                        ` : ''}
+                        <div class="item-price">
+                            <span class="unit-price">₪${(item.totalPrice / item.quantity).toFixed(2)} ליחידה</span>
+                            <span class="total-price">₪${item.totalPrice.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateCartItemQuantity('${item.id}', -1)">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateCartItemQuantity('${item.id}', 1)">+</button>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeCartItem('${item.id}')" title="הסר פריט">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateCartItemQuantity(itemId, change) {
+            if (window.cartManager) {
+                cartManager.updateQuantity(itemId, change);
+                loadCartPage();
+            }
+        }
+
+        function removeCartItem(itemId) {
+            if (window.cartManager) {
+                cartManager.removeFromCart(itemId);
+                loadCartPage();
+            }
+        }
+
+        function updateDeliveryZone() {
+            const zone = document.getElementById('delivery-zone').value;
+            if (window.cartManager) {
+                cartManager.setDeliveryZone(zone);
+            }
+        }
+
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon-code').value.trim();
+            if (couponCode && window.cartManager) {
+                cartManager.applyCoupon(couponCode);
+                document.getElementById('coupon-code').value = '';
+            }
+        }
+
+        function clearCart() {
+            if (window.cartManager && confirm('האם אתה בטוח שברצונך לרוקן את העגלה?')) {
+                cartManager.clearCart();
+                loadCartPage();
+            }
+        }
+
+        function continueToOrder() {
+            window.location.href = 'order.html';
+        }
+
+        function loadRecommendedItems() {
+            // Load recommended items based on cart contents
+            // This would be implemented based on business logic
+        }
+
+        function loadSavedOrders() {
+            const savedOrders = Utils.loadFromStorage('luluSavedOrders', []);
+            const quickReorder = document.getElementById('quick-reorder');
+            
+            if (savedOrders.length > 0) {
+                quickReorder.style.display = 'block';
+                const ordersContainer = document.getElementById('saved-orders');
+                ordersContainer.innerHTML = savedOrders.slice(0, 3).map(order => `
+                    <div class="saved-order" onclick="reorderItems(${order.id})">
+                        <span class="order-date">${new Date(order.date).toLocaleDateString('he-IL')}</span>
+                        <span class="order-total">₪${order.total.toFixed(2)}</span>
+                        <span class="order-items">${order.items.length} פריטים</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function reorderItems(orderId) {
+            if (window.cartManager) {
+                cartManager.reorder(orderId);
+                loadCartPage();
+            }
+        }
+    </script>
+</body>
+</html>
