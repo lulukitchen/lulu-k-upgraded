@@ -1,0 +1,22 @@
+{
+  "name": "lulu-kitchen-upgraded",
+  "version": "1.0.0",
+  "description": "אתר המטבח הסיני של לולו - מערכת הזמנות מתקדמת",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "build": "node build.js",
+    "deploy": "bash deploy.sh"
+  },
+  "keywords": ["restaurant", "chinese-food", "ordering-system", "hebrew", "fastcomet"],
+  "author": "Lulu Kitchen",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.6.0",
+    "date-fns": "^2.29.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="favicon.ico">
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://docs.google.com">
+    <link rel="preconnect" href="https://lulu-k.com">
+    
+    <!-- Additional meta tags -->
+    <meta name="theme-color" content="#DC143C">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="מטבח לולו">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -17,14 +32,24 @@
                 <h1>🍜 מטבח לולו</h1>
                 <span>המטבח הסיני הטוב בירושלים</span>
             </div>
+            
+            <!-- Language Toggle -->
+            <div class="language-toggle">
+                <button id="lang-he" class="lang-btn active" onclick="switchLanguage('he')" title="עברית">עב</button>
+                <button id="lang-en" class="lang-btn" onclick="switchLanguage('en')" title="English">EN</button>
+            </div>
+            
             <nav class="nav">
                 <ul>
-                    <li><a href="#daily-special">מנת היום</a></li>
-                    <li><a href="#menu">התפריט</a></li>
-                    <li><a href="#vip">VIP</a></li>
-                    <li><a href="#contact">צור קשר</a></li>
-                    <li><a href="#payment">תשלום</a></li>
-                    <li class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></li>
+                    <li><a href="#daily-special" data-translate="nav.dailySpecial">מנת היום</a></li>
+                    <li><a href="#menu" data-translate="nav.menu">התפריט</a></li>
+                    <li><a href="#vip" data-translate="nav.vip">VIP</a></li>
+                    <li><a href="#contact" data-translate="nav.contact">צור קשר</a></li>
+                    <li><a href="#payment" data-translate="nav.payment">תשלום</a></li>
+                    <li class="cart-icon" onclick="openCart()">
+                        🛒 <span id="cart-count">0</span>
+                        <span class="cart-label" data-translate="nav.cart">עגלה</span>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -33,11 +58,24 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>המטבח הסיני המקורי של ירושלים</h2>
-            <p>מנות טריות, טעמים מקוריים, משלוח מהיר!</p>
+            <h2 data-translate="hero.title">המטבח הסיני המקורי של ירושלים</h2>
+            <p data-translate="hero.subtitle">מנות טריות, טעמים מקוריים, משלוח מהיר!</p>
+            
+            <!-- Customer Counter -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="happy-customers">2,847</span>
+                    <span class="stat-label">לקוחות מרוצים</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="orders-completed">12,394</span>
+                    <span class="stat-label">הזמנות שבוצעו</span>
+                </div>
+            </div>
+            
             <div class="hero-buttons">
-                <button class="btn-primary" onclick="scrollToMenu()">הזמן עכשיו</button>
-                <button class="btn-secondary" onclick="openVIP()">הצטרף ל-VIP</button>
+                <button class="btn-primary" onclick="scrollToMenu()" data-translate="hero.orderNow">הזמן עכשיו</button>
+                <button class="btn-secondary" onclick="openVIP()" data-translate="hero.joinVip">הצטרף ל-VIP</button>
             </div>
         </div>
     </section>
@@ -88,9 +126,39 @@
     <!-- Menu -->
     <section id="menu" class="menu">
         <div class="container">
-            <h2>התפריט המלא</h2>
+            <h2 data-translate="menu.fullMenu">התפריט המלא</h2>
+            
+            <!-- Search Bar -->
+            <div class="menu-search">
+                <input type="text" id="menu-search-input" data-translate-placeholder="menu.search" 
+                       placeholder="חפש מנה..." onkeyup="searchMenu(this.value)">
+                <button onclick="clearSearch()" id="clear-search">✕</button>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" data-translate="menu.all">הכל</button>
+                <button class="filter-btn" data-filter="vegan" data-translate="menu.vegan">🌱 טבעוני</button>
+                <button class="filter-btn" data-filter="vegetarian" data-translate="menu.vegetarian">🥗 צמחוני</button>
+                <button class="filter-btn" data-filter="spicy" data-translate="menu.spicy">🌶️ חריף</button>
+                <button class="filter-btn" data-filter="kosher" data-translate="menu.kosher">✡️ כשר</button>
+                <button class="filter-btn" data-filter="gluten-free" data-translate="menu.glutenFree">🚫🌾 ללא גלוטן</button>
+            </div>
+            
+            <!-- Loading indicator -->
+            <div id="menu-loading" class="loading-indicator" style="display: none;">
+                <div class="loader"></div>
+                <p data-translate="notify.loading">טוען תפריט...</p>
+            </div>
+            
+            <!-- Menu Grid -->
             <div class="menu-grid" id="menu-grid">
-                <!-- Menu items will be loaded here -->
+                <!-- Menu items will be loaded dynamically from Google Sheets -->
+            </div>
+            
+            <!-- No results message -->
+            <div id="no-results" class="no-results" style="display: none;">
+                <p>לא נמצאו מנות התואמות לחיפוש</p>
             </div>
         </div>
     </section>
@@ -191,18 +259,60 @@
     <!-- Cart Modal -->
     <div id="cart-modal" class="modal" style="display:none;">
         <div class="modal-content">
-            <span class="close" onclick="closeCart()">&times;</span>
-            <h2>העגלה שלך</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">
-                <p>סה"כ: ₪<span id="cart-total">0</span></p>
+            <div class="modal-header">
+                <h2 data-translate="cart.title">העגלה שלך</h2>
+                <span class="close" onclick="closeCart()">&times;</span>
             </div>
+            
+            <div id="cart-items" class="cart-items-container">
+                <!-- Cart items will be populated here -->
+            </div>
+            
+            <!-- Delivery Progress Bar -->
+            <div class="delivery-progress" id="delivery-progress">
+                <!-- Progress will be updated dynamically -->
+            </div>
+            
+            <!-- Upsell Suggestions -->
+            <div class="upsell-section" id="upsell-suggestions" style="display: none;">
+                <!-- Upsell items will be populated here -->
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span data-translate="cart.subtotal">סכום ביניים:</span>
+                    <span id="cart-subtotal">₪0</span>
+                </div>
+                <div class="summary-row vip-discount" id="vip-discount-row" style="display: none;">
+                    <span>הנחת VIP (15%):</span>
+                    <span id="vip-discount-amount">-₪0</span>
+                </div>
+                <div class="summary-row">
+                    <span data-translate="cart.delivery">משלוח:</span>
+                    <span id="delivery-fee">₪40</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span data-translate="cart.total">סה״כ:</span>
+                    <span id="cart-total">₪0</span>
+                </div>
+            </div>
+            
             <div class="delivery-options">
                 <h3>אפשרויות משלוח:</h3>
-                <label><input type="radio" name="delivery" value="pickup"> איסוף עצמי (חינם)</label>
-                <label><input type="radio" name="delivery" value="delivery"> משלוח (₪40)</label>
+                <label class="delivery-option">
+                    <input type="radio" name="delivery" value="pickup"> 
+                    <span data-translate="cart.pickupFree">איסוף עצמי (חינם)</span>
+                </label>
+                <label class="delivery-option">
+                    <input type="radio" name="delivery" value="delivery" checked> 
+                    <span data-translate="cart.deliveryPaid">משלוח (₪40)</span>
+                </label>
             </div>
-            <button class="btn-primary full-width" onclick="proceedToCheckout()">המשך לתשלום</button>
+            
+            <button class="btn-primary full-width" onclick="proceedToCheckout()" data-translate="cart.checkout">
+                המשך לתשלום
+            </button>
         </div>
     </div>
 
@@ -222,6 +332,26 @@
         </div>
     </footer>
 
+    <!-- Core JavaScript Modules -->
+    <script src="src/services/TranslationService.js"></script>
+    <script src="src/services/MenuService.js"></script>
+    <script src="src/services/CartManager.js"></script>
+    <script src="src/components/ExtrasModal.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+127.0.0.1 - - [22/Aug/2025 11:48:52] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /src/services/TranslationService.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /src/services/MenuService.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /src/components/ExtrasModal.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /src/services/CartManager.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:14] code 404, message File not found
+127.0.0.1 - - [22/Aug/2025 11:49:14] "GET /src/locales/he.json HTTP/1.1" 404 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] code 404, message File not found
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /src/locales/en.json HTTP/1.1" 404 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] code 404, message File not found
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /src/locales/he.json HTTP/1.1" 404 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] code 404, message File not found
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /src/locales/en.json HTTP/1.1" 404 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /sw.js HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [22/Aug/2025 11:49:15] code 404, message File not found
+127.0.0.1 - - [22/Aug/2025 11:49:15] "GET /icons/icon-144x144.png HTTP/1.1" 404 -
