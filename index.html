@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מטבח לולו - המטבח הסיני הטוב בירושלים</title>
+    <meta name="description" content="הזמינו מהמטבח הסיני הטוב ביותר בירושלים - מנות טריות, משלוחים מהירים ומחירים הוגנים">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🍜 מטבח לולו</h1>
+                <span>המטבח הסיני הטוב בירושלים</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#daily-special">מנת היום</a></li>
+                    <li><a href="#menu">התפריט</a></li>
+                    <li><a href="#vip">VIP</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                    <li class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>המטבח הסיני המקורי של ירושלים</h2>
+            <p>מנות טריות, טעמים מקוריים, משלוח מהיר!</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToMenu()">הזמן עכשיו</button>
+                <button class="btn-secondary" onclick="openVIP()">הצטרף ל-VIP</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Special -->
+    <section id="daily-special" class="daily-special">
+        <div class="container">
+            <h2>🔥 מנת היום המיוחדת</h2>
+            <div id="special-dish" class="special-card">
+                <div class="special-image">
+                    <img src="" alt="מנת היום" id="special-img">
+                </div>
+                <div class="special-info">
+                    <h3 id="special-name"></h3>
+                    <p id="special-description"></p>
+                    <div class="special-price">
+                        <span class="original-price" id="special-original"></span>
+                        <span class="special-price-final" id="special-final"></span>
+                    </div>
+                    <button class="btn-primary" onclick="addToCart('special')">הוסף לעגלה</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="container">
+            <h3>סנן לפי:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="starter">מנות פתיחה</button>
+                <button class="filter-btn" data-filter="main">מנות עיקריות</button>
+                <button class="filter-btn" data-filter="vegetarian">צמחוני</button>
+                <button class="filter-btn" data-filter="spicy">חריף</button>
+                <button class="filter-btn" data-filter="family">משפחתי XL</button>
+            </div>
+            <div class="allergen-filters">
+                <h4>🚫 הסתר אלרגנים:</h4>
+                <label><input type="checkbox" id="hide-gluten"> גלוטן</label>
+                <label><input type="checkbox" id="hide-nuts"> אגוזים</label>
+                <label><input type="checkbox" id="hide-dairy"> חלבי</label>
+                <label><input type="checkbox" id="hide-soy"> סויה</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2>התפריט המלא</h2>
+            <div class="menu-grid" id="menu-grid">
+                <!-- Menu items will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison" id="comparison-section" style="display:none;">
+        <div class="container">
+            <h2>השוואת מנות (עד 3)</h2>
+            <div class="comparison-grid" id="comparison-grid">
+                <!-- Comparison items will be loaded here -->
+            </div>
+            <button class="btn-secondary" onclick="clearComparison()">נקה השוואה</button>
+        </div>
+    </section>
+
+    <!-- VIP Membership -->
+    <section id="vip" class="vip-section">
+        <div class="container">
+            <h2>👑 מנוי VIP</h2>
+            <div class="vip-card">
+                <h3>הצטרף למנוי ה-VIP</h3>
+                <div class="vip-price">₪299/חודש</div>
+                <ul>
+                    <li>✅ 15% הנחה על כל הזמנה</li>
+                    <li>✅ משלוח חינם תמיד</li>
+                    <li>✅ גישה למנות בלעדיות</li>
+                    <li>✅ עדיפות בהזמנות</li>
+                    <li>✅ נקודות לויאליטי כפולות</li>
+                </ul>
+                <button class="btn-vip" onclick="joinVIP()">הצטרף ל-VIP</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loyalty Points -->
+    <section class="loyalty">
+        <div class="container">
+            <h2>⭐ נקודות לויאליטי</h2>
+            <div class="loyalty-info">
+                <p>כל ₪1 = נקודה אחת</p>
+                <p>100 נקודות = ₪10 הנחה</p>
+                <div class="points-display">
+                    <span>הנקודות שלך: </span>
+                    <span id="user-points">0</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>צור קשר</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>שעות פתיחה</h3>
+                    <p>ראשון-חמישי: 13:00-21:00</p>
+                    <p>שישי: 13:00-15:00</p>
+                    <p>שבת: סגור</p>
+                </div>
+                <div class="contact-item">
+                    <h3>משלוחים</h3>
+                    <p>ירושלים: ₪40</p>
+                    <p>זמן משלוח: 45-60 דקות</p>
+                </div>
+                <div class="contact-item">
+                    <h3>טלפון</h3>
+                    <p>02-1234567</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>העגלה שלך</h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <p>סה"כ: ₪<span id="cart-total">0</span></p>
+            </div>
+            <div class="delivery-options">
+                <h3>אפשרויות משלוח:</h3>
+                <label><input type="radio" name="delivery" value="pickup"> איסוף עצמי (חינם)</label>
+                <label><input type="radio" name="delivery" value="delivery"> משלוח (₪40)</label>
+            </div>
+            <button class="btn-primary full-width" onclick="proceedToCheckout()">המשך לתשלום</button>
+        </div>
+    </div>
+
+    <!-- Quick Preview Modal -->
+    <div id="preview-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closePreview()">&times;</span>
+            <div id="preview-content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 מטבח לולו - כל הזכויות שמורות</p>
+            <p>נבנה עם ❤️ בירושלים</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
